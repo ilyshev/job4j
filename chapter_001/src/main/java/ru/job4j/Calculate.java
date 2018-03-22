@@ -8,7 +8,7 @@ package ru.job4j.calculate;
 * @since 0.1
 */
 
-public class Calculate{
+public class Calculate {
 
 	/**
 	* Конструктор, вывод строки в консоль
@@ -24,8 +24,8 @@ public class Calculate{
 	* @param name Your name
 	* @return Echo plus your name
 	*/
-	public String echo (String name) {
-		return "Echo, echo, echo: "+name;
+	public String echo(String name) {
+		return "Echo, echo, echo: " + name;
 	}
 
 }
