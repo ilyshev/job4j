@@ -1,0 +1,25 @@
+package ru.job4j.max;
+
+import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+/**
+ * Test Max - максимум из двух чисел
+ *
+ * @author Dmitry Ilyshev (dilyshev@mac.com).
+ * @version $Id$.
+ * @since 0.1.
+ */
+
+public class MaxTest {
+    /**
+     * Если первое число меньше второго, выбираем второе
+     */
+    @Test
+    public void whenFirstLessSecondThenSecond() {
+        Max maximum = new Max();
+        int result = maximum.max(1, 2);
+        assertThat(result, is(2));
+    }
+}
