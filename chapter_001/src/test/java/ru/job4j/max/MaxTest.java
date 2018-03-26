@@ -5,7 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Test Max - максимум из двух чисел
+ * Test Max - выбираем максимальное число
  *
  * @author Dmitry Ilyshev (dilyshev@mac.com).
  * @version $Id$.
@@ -21,5 +21,15 @@ public class MaxTest {
         Max maximum = new Max();
         int result = maximum.max(1, 2);
         assertThat(result, is(2));
+    }
+    /**
+     * Максимум из трех чисел.
+     * Если первое число больше второго и третьего, то выбираем первое.
+     */
+    @Test
+    public void whenFirstMoreThanSecondAndThirdThenFirst() {
+        Max maxThree = new Max();
+        int result = maxThree.max(6, 4, 2);
+        assertThat(result, is(6));
     }
 }
