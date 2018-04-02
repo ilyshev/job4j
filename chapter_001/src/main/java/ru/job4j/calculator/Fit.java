@@ -16,7 +16,6 @@ public class Fit {
     public double manWeight(double height) {
         return (height - 100) * 1.15;
     }
-
     /**
      * Вычисляем идеальный вес женщины.
      * @param height рост.

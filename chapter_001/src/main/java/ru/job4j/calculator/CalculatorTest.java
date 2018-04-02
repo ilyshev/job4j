@@ -24,7 +24,6 @@ public class CalculatorTest {
      double expected = 2D;
      assertThat(result, is(expected));
   }
-
     /**
      * test substract.
      */
@@ -36,7 +35,6 @@ public class CalculatorTest {
       double expected = 1D;
       assertThat(result, is(expected));
   }
-
     /**
      * test div.
      */
@@ -48,7 +46,6 @@ public class CalculatorTest {
       double expected = 1D;
       assertThat(result, is(expected));
   }
-
     /**
      * test multiple.
      */

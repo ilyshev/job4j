@@ -14,13 +14,9 @@ public class BubbleSort {
      * @return массив.
      */
     public int[] sort(int[] array) {
-        //идем с начала массива
         for (int i = 0; i < array.length; i++) {
-            //сокращаем фрагмент массива
             for (int j = array.length - 1; j > i; j--) {
-                //сравненение элементов массива парами
                 if (array[j] < array[j - 1]) {
-                    //меняем элементы массива местами
                     int swapEl = array[j];
                     array[j] = array[j - 1];
                     array[j - 1] = swapEl;

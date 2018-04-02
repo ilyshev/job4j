@@ -19,14 +19,12 @@ public class Board {
         String ln = System.getProperty("line.separator");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                //условие проверки, что писать x или пробел
                 if ((i + j) % 2 == 0) {
                     screen.append("X");
                 } else {
                     screen.append(" ");
                 }
             }
-            //перевод на новую строку
             screen.append(ln);
         }
         return screen.toString();

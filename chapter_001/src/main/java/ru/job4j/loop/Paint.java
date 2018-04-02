@@ -24,7 +24,6 @@ public class Paint {
         }
         return screen.toString();
     }
-
     /**
      * Рисуем правую сторону пирамиды.
      * @param height высота треугольника

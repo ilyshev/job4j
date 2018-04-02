@@ -10,7 +10,6 @@ package ru.job4j.condition;
 public class Point {
     private int x;
     private int y;
-
     /**
      * конструктор типа данных Point.
      * @param x - x.
@@ -20,7 +19,6 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
     /**
      * Вычисляем расстояние между двумя точками в системе координат.
      * @param that - координаты входящей точки
@@ -36,7 +34,6 @@ public class Point {
         double result = Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2));
         return result;
     }
-
     /**
      * вывод результата на консоль.
      * @param args - args.
@@ -45,7 +42,6 @@ public class Point {
         Point a = new Point(0, 1);
         Point b = new Point(2, 5);
 
-        // Сделаем вызов метода
         System.out.println("x1 = " + a.x);
         System.out.println("y1 = " + a.y);
         System.out.println("x2 = " + b.x);
