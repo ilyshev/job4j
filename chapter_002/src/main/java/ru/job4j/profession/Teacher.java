@@ -6,7 +6,7 @@ public class Teacher extends Profession {
 
     }
 
-    public void study(Student student){
+    public void study(Student student) {
 
     }
 }
