@@ -81,7 +81,7 @@ public class Tracker {
     }
 
     /**
-     * Метод получения списка по имени.
+     * Метод получения списка заявок по имени.
      *
      * @param key искомое имя
      * @return массив с найденными именами.
@@ -89,7 +89,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] result = new Item[this.position];
         int index = 0;
-        for (int j = 0; j != result.length; j++) {
+        for (int j = 0; j != this.position; j++) {
             if (this.items[j].getName().equals(key)) {
                 result[index] = this.items[j];
                 index++;
@@ -100,7 +100,7 @@ public class Tracker {
 
     /**
      * Метод получения заявки по id.
-     * @param id
+     * @param id записи
      * @return result позиция из списка.
      */
     public Item findById(String id) {

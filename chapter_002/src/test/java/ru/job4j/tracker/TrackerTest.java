@@ -81,10 +81,10 @@ public class TrackerTest {
         tracker.add(item);
         Item item2 = new Item("test2", "testDescription2", 1234L);
         tracker.add(item2);
-        Item item3 = new Item("test3", "testDescription3", 12345L);
+        Item item3 = new Item("test1", "testDescription3", 12345L);
         tracker.add(item3);
-        Item[] result = tracker.findByName(item2.getName());
-        Item[] expect  = {item2, null, null};
+        Item[] result = tracker.findByName(item.getName());
+        Item[] expect  = {item, item3, null};
         assertThat(result, is(expect));
     }
 
