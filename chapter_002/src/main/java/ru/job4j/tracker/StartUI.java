@@ -91,16 +91,21 @@ public class StartUI {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки: ");
         String desc = this.input.ask("Введите описание: ");
-        Item item = new Item(name, desc, 123L);
+        long date = System.currentTimeMillis();
+        Item item = new Item(name, desc, date);
         this.tracker.add(item);
-        System.out.println("------------ Новая заявка с id : " + item.getId() + "-----------");
+        System.out.println("Создана новая заявка с id : " + item.getId());
     }
     /**
      * Метод вывода всех заявок на экран.
      */
     private void showAll() {
         System.out.println("------------ Список всех заявок --------------");
-        System.out.println(Arrays.toString((this.tracker.findAll())));
+        for (int i = 0; i < tracker.findAll().length; i++) {
+            System.out.println(this.tracker.findAll()[i].getId()
+                    + " " + this.tracker.findAll()[i].getName()
+                    + " " + this.tracker.findAll()[i].getDescription());
+        }
         System.out.println("------------ Конец списка --------------");
     }
     /**
@@ -111,9 +116,10 @@ public class StartUI {
         String id = this.input.ask("Введите id редактируемой заявки : ");
         String name = this.input.ask("Введите новое имя заявки: ");
         String desc = this.input.ask("Введите описание для новой заявки: ");
-        Item item = new Item(name, desc, 1234L);
+        long date = System.currentTimeMillis();
+        Item item = new Item(name, desc, date);
         this.tracker.replace(id, item);
-        System.out.println("------------ Заявка с id : " + item.getId() + " отредактирована -----------");
+        System.out.println("Заявка с id: " + item.getId() + " отредактирована.");
     }
     /**
      * Метод удаления заявки.
@@ -122,7 +128,7 @@ public class StartUI {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки для удаления: ");
         this.tracker.delete(id);
-        System.out.println("------------ Заявка с id : " + id + " удалена -----------");
+        System.out.println("Заявка с id: " + id + " удалена.");
     }
     /**
      * Метод поиска заявки по Id.
@@ -130,7 +136,7 @@ public class StartUI {
     private void findId() {
         System.out.println("------------ Поиск заявки по id--------------");
         String id = this.input.ask("Введите id искомой заявки: ");
-        System.out.println("------------ Результат поиска: " + this.tracker.findById(id));
+        System.out.println("Результат поиска: " + this.tracker.findById(id));
     }
     /**
      * Метод поиска заявки по имени.
@@ -138,7 +144,7 @@ public class StartUI {
     private void findName() {
         System.out.println("------------ Поиск заявки по имени--------------");
         String key = this.input.ask("Введите имя искомой заявки: ");
-        System.out.println("------------ Результат поиска: " + Arrays.toString(this.tracker.findByName(key)));
+        System.out.println("Результат поиска: " + Arrays.toString(this.tracker.findByName(key)));
     }
     /**
      * Метод показа пунктов меню.
@@ -154,7 +160,6 @@ public class StartUI {
                 + "6. Выход\n");
     }
     public static void main(String[] args) {
-        //Input input = new StubInput(new String[]{"create stub task"});
         Input input = new ConsoleInput();
         new StartUI(new ConsoleInput(), new Tracker()).init();
     }

@@ -42,9 +42,11 @@ public class Tracker {
      * @param item новый элемент массива.
      */
     public void replace(String id, Item item) {
-        for (int index = 0; index < this.items.length; index++) {
-            if (item.getId().equals(id)) {
-                this.items[index] = item;
+        for (int index = 0; index != items.length; index++) {
+            if (this.items[index].getId().equals(id)) {
+                item.setId(items[index].getId());
+                items[index] = item;
+                break;
             }
         }
     }
