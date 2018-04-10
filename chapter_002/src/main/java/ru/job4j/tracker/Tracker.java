@@ -63,7 +63,7 @@ public class Tracker {
                 System.arraycopy(items, index + 1, items, index, items.length - index - 1);
                 break;
             } else {
-                items[index] = item;
+                //items[index] = item;
                 index++;
             }
         }

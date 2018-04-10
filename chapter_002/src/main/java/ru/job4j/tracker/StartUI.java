@@ -136,7 +136,10 @@ public class StartUI {
     private void findId() {
         System.out.println("------------ Поиск заявки по id--------------");
         String id = this.input.ask("Введите id искомой заявки: ");
-        System.out.println("Результат поиска: " + this.tracker.findById(id));
+        System.out.println("Результат поиска: "
+                + this.tracker.findById(id).getId()
+                + " " + this.tracker.findById(id).getName()
+                + " " + this.tracker.findById(id).getDescription());
     }
     /**
      * Метод поиска заявки по имени.
@@ -144,7 +147,12 @@ public class StartUI {
     private void findName() {
         System.out.println("------------ Поиск заявки по имени--------------");
         String key = this.input.ask("Введите имя искомой заявки: ");
-        System.out.println("Результат поиска: " + Arrays.toString(this.tracker.findByName(key)));
+        for (int i = 0; i < this.tracker.findByName(key).length; i++) {
+            System.out.println("Результат поиска: "
+                    + this.tracker.findByName(key)[i].getId()
+                    + " " + this.tracker.findByName(key)[i].getName()
+                    + " " + this.tracker.findByName(key)[i].getDescription());
+        }
     }
     /**
      * Метод показа пунктов меню.
