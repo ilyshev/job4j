@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import org.junit.After;
+import org.junit.Before;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -44,5 +46,32 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getId(), is(item2.getId()));
+    }
+
+    private final Tracker tracker = new Tracker();
+    private final Item item = tracker.add(new Item());
+
+    @Before
+    public void setInput() {
+        System.out.println("Начало метода");
+    }
+    @After
+    public void setOutput() {
+        System.out.println("Конец метода");
+    }
+    /**
+     * тест отображения списка заявок.
+     */
+    @Test
+    public void whenShowAllThenTrackerShowsAllItems() {
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUI(input, this.tracker).init();
+        assertThat(this.tracker.findAll()[0], is(item));
+    }
+    @Test
+    public void whenShowByIdThenTrackerShowsItem() {
+        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        new StartUI(input, this.tracker).init();
+        assertThat(this.tracker.findById(item.getId()).getId(), is(item.getId()));
     }
 }
