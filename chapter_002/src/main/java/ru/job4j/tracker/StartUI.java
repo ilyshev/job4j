@@ -16,34 +16,34 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
-    /**
+/*    *
      * Константа меню для добавления новой заявки
-     */
+
     private static final String ADD = "0";
-    /**
+    *
      * Константа показа всех заявок.
-     */
+
     private static final String SHOWALL = "1";
-    /**
+    *
      * Константа показа всех заявок.
-     */
+
     private static final String EDIT = "2";
-    /**
+    *
      * Константа показа всех заявок.
-     */
+
     private static final String DEL = "3";
-    /**
+    *
      * Константа показа всех заявок.
-     */
+
     private static final String FINDID = "4";
-    /**
+    *
      * Константа показа всех заявок.
-     */
+
     private static final String FINDNAME = "5";
-    /**
+    *
      * Константа для выхода из цикла.
-     */
-    private static final String EXIT = "6";
+
+    private static final String EXIT = "6";*/
     /**
      * Хранилище заявок.
      */
@@ -63,9 +63,17 @@ public class StartUI {
      * Основной цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
+        //boolean exit = false;
+        Tracker tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(this.input, tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            int key = Integer.valueOf(input.ask("Выберите пункт меню: "));
+            menu.select(key);
+        } while (!"y".equals(this.input.ask("Выход? y / n : ")));
+    }
+            /*this.showMenu();
             String answer = this.input.ask("Выберите пункт меню: ");
             if (ADD.equals(answer)) {
                 this.createItem();
@@ -83,7 +91,7 @@ public class StartUI {
                 exit = true;
             }
         }
-    }
+    }*/
     /**
      * Метод добавления новой заявки в хранилище.
      */
