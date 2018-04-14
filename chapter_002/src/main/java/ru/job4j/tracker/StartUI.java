@@ -67,13 +67,23 @@ public class StartUI {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
+        int[] ranges = new int[]{0, 1, 2, 3, 4, 5};
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("Выберите пункт меню: "));
-            menu.select(key);
-        } while (!"y".equals(this.input.ask("Выход? y / n : ")));
+            //int key = Integer.valueOf(input.ask("Выберите пункт меню: "));
+            menu.select(input.ask("Выберите пункт меню: ", ranges));
+        } while (!"y".equals(this.input.ask("Для выхода нажмите 'y': ")));
     }
-            /*this.showMenu();
+
+    /**
+     * вывод программы на экран.
+     * @param args args
+     */
+    public static void main(String[] args) {
+        Input input = new ValidateInput();
+        new StartUI(new ValidateInput(), new Tracker()).init();
+    }
+           /* this.showMenu();
             String answer = this.input.ask("Выберите пункт меню: ");
             if (ADD.equals(answer)) {
                 this.createItem();
@@ -91,10 +101,10 @@ public class StartUI {
                 exit = true;
             }
         }
-    }*/
-    /**
+    }
+    *//**
      * Метод добавления новой заявки в хранилище.
-     */
+     *//*
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки: ");
@@ -104,9 +114,9 @@ public class StartUI {
         this.tracker.add(item);
         System.out.println("Создана новая заявка с id : " + item.getId());
     }
-    /**
+    *//**
      * Метод вывода всех заявок на экран.
-     */
+     *//*
     private void showAll() {
         System.out.println("------------ Список всех заявок --------------");
         for (int i = 0; i < tracker.findAll().length; i++) {
@@ -116,9 +126,9 @@ public class StartUI {
         }
         System.out.println("------------ Конец списка --------------");
     }
-    /**
+    *//**
      * Метод редактирования заявки.
-     */
+     *//*
     private void editItem() {
         System.out.println("------------ Редактирование заявки --------------");
         String id = this.input.ask("Введите id редактируемой заявки : ");
@@ -129,18 +139,18 @@ public class StartUI {
         this.tracker.replace(id, item);
         System.out.println("Заявка с id: " + item.getId() + " отредактирована.");
     }
-    /**
+    *//**
      * Метод удаления заявки.
-     */
+     *//*
     private void delItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки для удаления: ");
         this.tracker.delete(id);
         System.out.println("Заявка с id: " + id + " удалена.");
     }
-    /**
+    *//**
      * Метод поиска заявки по Id.
-     */
+     *//*
     private void findId() {
         System.out.println("------------ Поиск заявки по id--------------");
         String id = this.input.ask("Введите id искомой заявки: ");
@@ -149,22 +159,22 @@ public class StartUI {
                 + " " + this.tracker.findById(id).getName()
                 + " " + this.tracker.findById(id).getDescription());
     }
-    /**
+    *//**
      * Метод поиска заявки по имени.
-     */
+     *//*
     private void findName() {
         System.out.println("------------ Поиск заявки по имени--------------");
         String key = this.input.ask("Введите имя искомой заявки: ");
-        for (int i = 0; i < this.tracker.findByName(key).length; i++) {
+        for (int i = 0; i < tracker.findAll().length; i++) {
             System.out.println("Результат поиска: "
                     + this.tracker.findByName(key)[i].getId()
                     + " " + this.tracker.findByName(key)[i].getName()
                     + " " + this.tracker.findByName(key)[i].getDescription());
         }
     }
-    /**
+    *//**
      * Метод показа пунктов меню.
-     */
+     *//*
     private void showMenu() {
         System.out.println("Меню.");
         System.out.print("0. Добавить заявку\n"
@@ -174,9 +184,5 @@ public class StartUI {
                 + "4. Найти заявку по Id\n"
                 + "5. Найти заявки по имени\n"
                 + "6. Выход\n");
-    }
-    public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        new StartUI(new ConsoleInput(), new Tracker()).init();
-    }
+    } */
 }

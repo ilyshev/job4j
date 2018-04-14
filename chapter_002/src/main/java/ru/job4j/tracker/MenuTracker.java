@@ -26,7 +26,7 @@ class EditItem implements UserAction {
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[6];
+    public UserAction[] actions = new UserAction[6];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -132,8 +132,8 @@ public class MenuTracker {
                 System.out.println(
                         String.format("%s %s %s",
                                 tracker.findByName(name)[i].getId(),
-                                tracker.findById(name).getName(),
-                                tracker.findById(name).getDescription())
+                                tracker.findByName(name)[i].getName(),
+                                tracker.findByName(name)[i].getDescription())
                 );
             }
         }
