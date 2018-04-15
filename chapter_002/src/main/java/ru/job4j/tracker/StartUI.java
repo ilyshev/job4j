@@ -16,34 +16,7 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
-/*    *
-     * Константа меню для добавления новой заявки
 
-    private static final String ADD = "0";
-    *
-     * Константа показа всех заявок.
-
-    private static final String SHOWALL = "1";
-    *
-     * Константа показа всех заявок.
-
-    private static final String EDIT = "2";
-    *
-     * Константа показа всех заявок.
-
-    private static final String DEL = "3";
-    *
-     * Константа показа всех заявок.
-
-    private static final String FINDID = "4";
-    *
-     * Константа показа всех заявок.
-
-    private static final String FINDNAME = "5";
-    *
-     * Константа для выхода из цикла.
-
-    private static final String EXIT = "6";*/
     /**
      * Хранилище заявок.
      */
@@ -67,11 +40,10 @@ public class StartUI {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
-        int[] ranges = new int[]{0, 1, 2, 3, 4, 5};
+        int[] range = new int[]{0, 1, 2, 3, 4, 5, 6};
         do {
             menu.show();
-            //int key = Integer.valueOf(input.ask("Выберите пункт меню: "));
-            menu.select(input.ask("Выберите пункт меню: ", ranges));
+            menu.select(input.ask("Выберите пункт меню: ", range));
         } while (!"y".equals(this.input.ask("Для выхода нажмите 'y': ")));
     }
 
@@ -80,109 +52,12 @@ public class StartUI {
      * @param args args
      */
     public static void main(String[] args) {
-        Input input = new ValidateInput();
-        new StartUI(new ValidateInput(), new Tracker()).init();
+       // Input input = new ValidateInput();
+        new StartUI(
+                new ValidateInput(
+                        new ConsoleInput()
+                ),
+                new Tracker()
+        ).init();
     }
-           /* this.showMenu();
-            String answer = this.input.ask("Выберите пункт меню: ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOWALL.equals(answer)) {
-                this.showAll();
-            } else if (EDIT.equals(answer)) {
-                this.editItem();
-            } else if (DEL.equals(answer)) {
-                this.delItem();
-            } else if (FINDID.equals(answer)) {
-                this.findId();
-            } else if (FINDNAME.equals(answer)) {
-                this.findName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
-        }
-    }
-    *//**
-     * Метод добавления новой заявки в хранилище.
-     *//*
-    private void createItem() {
-        System.out.println("------------ Добавление новой заявки --------------");
-        String name = this.input.ask("Введите имя заявки: ");
-        String desc = this.input.ask("Введите описание: ");
-        long date = System.currentTimeMillis();
-        Item item = new Item(name, desc, date);
-        this.tracker.add(item);
-        System.out.println("Создана новая заявка с id : " + item.getId());
-    }
-    *//**
-     * Метод вывода всех заявок на экран.
-     *//*
-    private void showAll() {
-        System.out.println("------------ Список всех заявок --------------");
-        for (int i = 0; i < tracker.findAll().length; i++) {
-            System.out.println(this.tracker.findAll()[i].getId()
-                    + " " + this.tracker.findAll()[i].getName()
-                    + " " + this.tracker.findAll()[i].getDescription());
-        }
-        System.out.println("------------ Конец списка --------------");
-    }
-    *//**
-     * Метод редактирования заявки.
-     *//*
-    private void editItem() {
-        System.out.println("------------ Редактирование заявки --------------");
-        String id = this.input.ask("Введите id редактируемой заявки : ");
-        String name = this.input.ask("Введите новое имя заявки: ");
-        String desc = this.input.ask("Введите описание для новой заявки: ");
-        long date = System.currentTimeMillis();
-        Item item = new Item(name, desc, date);
-        this.tracker.replace(id, item);
-        System.out.println("Заявка с id: " + item.getId() + " отредактирована.");
-    }
-    *//**
-     * Метод удаления заявки.
-     *//*
-    private void delItem() {
-        System.out.println("------------ Удаление заявки --------------");
-        String id = this.input.ask("Введите id заявки для удаления: ");
-        this.tracker.delete(id);
-        System.out.println("Заявка с id: " + id + " удалена.");
-    }
-    *//**
-     * Метод поиска заявки по Id.
-     *//*
-    private void findId() {
-        System.out.println("------------ Поиск заявки по id--------------");
-        String id = this.input.ask("Введите id искомой заявки: ");
-        System.out.println("Результат поиска: "
-                + this.tracker.findById(id).getId()
-                + " " + this.tracker.findById(id).getName()
-                + " " + this.tracker.findById(id).getDescription());
-    }
-    *//**
-     * Метод поиска заявки по имени.
-     *//*
-    private void findName() {
-        System.out.println("------------ Поиск заявки по имени--------------");
-        String key = this.input.ask("Введите имя искомой заявки: ");
-        for (int i = 0; i < tracker.findAll().length; i++) {
-            System.out.println("Результат поиска: "
-                    + this.tracker.findByName(key)[i].getId()
-                    + " " + this.tracker.findByName(key)[i].getName()
-                    + " " + this.tracker.findByName(key)[i].getDescription());
-        }
-    }
-    *//**
-     * Метод показа пунктов меню.
-     *//*
-    private void showMenu() {
-        System.out.println("Меню.");
-        System.out.print("0. Добавить заявку\n"
-                + "1. Показать все заявки\n"
-                + "2. Редактировать заявку\n"
-                + "3. Удалить заявку \n"
-                + "4. Найти заявку по Id\n"
-                + "5. Найти заявки по имени\n"
-                + "6. Выход\n");
-    } */
 }
