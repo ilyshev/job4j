@@ -36,11 +36,10 @@ public class StartUI {
      * Основной цикл программы.
      */
     public void init() {
-        //boolean exit = false;
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
-        int[] range = new int[]{0, 1, 2, 3, 4, 5, 6};
+        int[] range = new int[]{0, 1, 2, 3, 4, 5};
         do {
             menu.show();
             menu.select(input.ask("Выберите пункт меню: ", range));

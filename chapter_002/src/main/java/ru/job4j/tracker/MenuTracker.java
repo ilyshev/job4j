@@ -54,6 +54,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Использование метода добавления заявки.
+     */
     private class AddItem extends BaseAction {
         public AddItem(int key, String name) {
             super(key, name);
@@ -67,6 +70,10 @@ public class MenuTracker {
             tracker.add(new Task(name, desc));
         }
     }
+
+    /**
+     * Использование метода показа всех заявок.
+     */
     private class ShowItems extends BaseAction {
         public ShowItems(int key, String name) {
             super(key, name);
@@ -80,6 +87,10 @@ public class MenuTracker {
             }
         }
     }
+
+    /**
+     * Использование метода удаления заявки.
+     */
     private class DelItem extends BaseAction {
         public DelItem(int key, String name) {
             super(key, name);
@@ -90,6 +101,10 @@ public class MenuTracker {
             tracker.delete(id);
         }
     }
+
+    /**
+     * Использование метода поиска по id.
+     */
     public class FindById extends BaseAction {
         public FindById(int key, String name) {
             super(key, name);
@@ -105,6 +120,10 @@ public class MenuTracker {
             );
         }
     }
+
+    /**
+     * Использование метода поиска по имени.
+     */
     class FindByName extends BaseAction {
         public FindByName(int key, String name) {
             super(key, name);
