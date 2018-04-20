@@ -36,8 +36,7 @@ public class StartUI {
      * Основной цикл программы.
      */
     public void init() {
-        Tracker tracker = new Tracker();
-        MenuTracker menu = new MenuTracker(this.input, tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
         int[] range = new int[]{0, 1, 2, 3, 4, 5};
         do {

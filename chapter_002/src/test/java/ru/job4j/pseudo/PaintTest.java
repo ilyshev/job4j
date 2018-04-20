@@ -25,7 +25,7 @@ public class PaintTest {
     }
 
     @After
-    public void backOutbut() {
+    public void backOutput() {
         System.setOut(this.stdout);
         System.out.println("execute after method");
     }

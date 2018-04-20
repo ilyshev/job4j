@@ -20,7 +20,7 @@ public class StartUITest {
     @Test
     public void whenAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
@@ -31,7 +31,7 @@ public class StartUITest {
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item());
-        Input input = new StubInput(new String[]{"2", item.getId(), "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test name"));
     }
@@ -43,7 +43,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item());
         Item item2 = tracker.add(new Item());
-        Input input = new StubInput(new String[]{"3", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"3", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getId(), is(item2.getId()));
     }
@@ -64,13 +64,13 @@ public class StartUITest {
      */
     @Test
     public void whenShowAllThenTrackerShowsAllItems() {
-        Input input = new StubInput(new String[]{"1", "6"});
+        Input input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, this.tracker).init();
         assertThat(this.tracker.findAll()[0], is(item));
     }
     @Test
     public void whenShowByIdThenTrackerShowsItem() {
-        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"4", item.getId(), "y"});
         new StartUI(input, this.tracker).init();
         assertThat(this.tracker.findById(item.getId()).getId(), is(item.getId()));
     }

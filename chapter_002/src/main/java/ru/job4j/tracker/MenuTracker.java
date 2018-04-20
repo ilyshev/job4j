@@ -14,7 +14,6 @@ class EditItem extends BaseAction {
         Task task = new Task(name, desc);
         task.setId(id);
         long date = System.currentTimeMillis();
-        //Item item = new Item(name, desc, date);
         tracker.replace(id, task);
     }
 }
@@ -67,7 +66,7 @@ public class MenuTracker {
             String desc = input.ask("Введите описание: ");
             long date = System.currentTimeMillis();
             Item item = new Item(name, desc, date);
-            tracker.add(new Task(name, desc));
+            tracker.add(item);
         }
     }
 
@@ -81,9 +80,11 @@ public class MenuTracker {
        @Override
         public void execute(Input input, Tracker tracker) {
             for (Item item : tracker.findAll()) {
+                if (item != null) {
                 System.out.println(
                         String.format("%s %s %s", item.getId(), item.getName(), item.getDescription())
                 );
+                }
             }
         }
     }
