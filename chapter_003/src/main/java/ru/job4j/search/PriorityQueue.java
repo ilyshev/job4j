@@ -19,7 +19,7 @@ public class PriorityQueue {
     public void put(Task task) {
         tasks.add(task);
         if (task.getPriority() < tasks.getFirst().getPriority()) {
-            tasks.addFirst(task);
+            tasks.add(0, task);
         }
     }
 
