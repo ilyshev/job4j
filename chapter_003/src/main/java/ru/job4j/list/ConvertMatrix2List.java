@@ -1,5 +1,9 @@
 package ru.job4j.list;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * конвертация двумерного массива в List
  *
@@ -7,10 +11,6 @@ package ru.job4j.list;
  * @version $Id$
  * @since  0.1
  */
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ConvertMatrix2List {
     public List<Integer> toList(int[][] array) {
