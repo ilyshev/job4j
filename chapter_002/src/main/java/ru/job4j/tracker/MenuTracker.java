@@ -2,26 +2,27 @@ package ru.job4j.tracker;
 
 import ru.job4j.tracker.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class EditItem extends BaseAction {
     public EditItem(int key, String name) {
         super(key, name);
     }
     @Override
     public void execute(Input input, Tracker tracker) {
-        String id = input.ask("Введите id редактируемой заявки: ");
-        String name = input.ask("Введите имя заявки: ");
-        String desc = input.ask("Введите описание: ");
-        Task task = new Task(name, desc);
-        task.setId(id);
-        long date = System.currentTimeMillis();
-        tracker.replace(id, task);
+        Item previous = new Item();
+        previous.setId(input.ask("Введите id редактируемой заявки: "));
+        previous.setName(input.ask("Введите имя заявки: "));
+        previous.setDescription(input.ask("Введите описание: "));
+        tracker.replace(previous);
     }
 }
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[6];
+    private List<UserAction> actions = new ArrayList<>();
     private int position = 0;
 
     public MenuTracker(Input input, Tracker tracker) {
@@ -29,20 +30,22 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
-    public void fillActions() {
-        this.actions[position++] = new AddItem(0, "Добавить новую заявку");
-        this.actions[position++] = new ShowItems(1, "Список всех заявок");
-        this.actions[position++] = new EditItem(2, "Редактировать заявку");
-        this.actions[position++] = new DelItem(3, "Удалить заявку");
-        this.actions[position++] = new FindById(4, "Найти заявку по id");
-        this.actions[position++] = new FindByName(5, "Найти заявку по имени");
+    public int fillActions() {
+        int count = 0;
+        this.actions.add(count, new AddItem(count++, "Добавить новую заявку"));
+        this.actions.add(count, new ShowItems(count++, "Список всех заявок"));
+        this.actions.add(count, new EditItem(count++, "Редактировать заявку"));
+        this.actions.add(count, new DelItem(count++, "Удалить заявку"));
+        this.actions.add(count, new FindById(count++, "Найти заявку по id"));
+        this.actions.add(count, new FindByName(count++, "Найти заявку по имени"));
+        return count;
     }
 
-    public void addAction(UserAction action) {
-        this.actions[position++] = action;
-    }
+ //   public void addAction(UserAction action) {
+ //       this.actions[position++] = action;
+ //   }
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     public void show() {
@@ -132,12 +135,12 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Введите имя заявки: ");
-            for (int i = 0; i < tracker.findByName(name).length; i++) {
+            for (Item item : tracker.findAll()) {
                 System.out.println(
                         String.format("%s %s %s",
-                                tracker.findByName(name)[i].getId(),
-                                tracker.findByName(name)[i].getName(),
-                                tracker.findByName(name)[i].getDescription())
+                                item.getId(),
+                                item.getName(),
+                                item.getDescription())
                 );
             }
         }

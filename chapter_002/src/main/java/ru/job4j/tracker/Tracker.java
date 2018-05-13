@@ -14,7 +14,7 @@ public class Tracker {
     /**
      * Массив для хранения заявок.
      */
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Указатель ячейки для новой заявки.
@@ -31,21 +31,19 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
     /**
      * Метод замены заявки.
      *
-     * @param id заменяемого элемента массива.
      * @param item новый элемент массива.
      */
-    public void replace(String id, Item item) {
-        for (int index = 0; index != items.length; index++) {
-            if (this.items[index].getId().equals(id)) {
-                item.setId(items[index].getId());
-                items[index] = item;
+    public void replace(Item item) {
+        for (Item index : items) {
+            if (item.getId().equals(index.getId()) && item.getId() != null) {
+                items.add(items.indexOf(index), item);
                 break;
             }
         }
@@ -59,12 +57,9 @@ public class Tracker {
     public void delete(String id) {
         int index = 0;
         for (Item item : items) {
-            if (item.getId().equals(id)) {
-                System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+            if (item.getId().equals(id) && item != null) {
+                items.remove(items.indexOf(item));
                 break;
-            } else {
-                //items[index] = item;
-                index++;
             }
         }
     }
@@ -74,10 +69,12 @@ public class Tracker {
      *
      * @return список.
      */
-    public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
+    public List<Item> findAll() {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item != null) {
+                result.add(item);
+            }
         }
         return result;
     }
@@ -88,13 +85,11 @@ public class Tracker {
      * @param key искомое имя
      * @return массив с найденными именами.
      */
-    public Item[] findByName(String key) {
-        Item[] result = new Item[this.position];
-        int index = 0;
-        for (int j = 0; j != this.position; j++) {
-            if (this.items[j].getName().equals(key)) {
-                result[index] = this.items[j];
-                index++;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item :items) {
+            if (item.getName().equals(key) && item != null) {
+                result.add(item);
             }
         }
         return result;

@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -20,7 +25,9 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        List<Item> expect = new ArrayList<>();
+        expect.add(item);
+        assertThat(tracker.findAll(), is(expect));
     }
 
     /**
@@ -37,7 +44,7 @@ public class TrackerTest {
         // Проставляем старый id из previous, который был сгенерирован выше.
         next.setId(previous.getId());
         // Обновляем заявку в трекере.
-        tracker.replace(previous.getId(), next);
+        tracker.replace(next);
         // Проверяем, что заявка с таким id имеет новые имя test2.
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
@@ -53,7 +60,7 @@ public class TrackerTest {
         Item todelete = new Item("test2", "testDescription2", 1234L);
         tracker.add(todelete);
         tracker.delete(todelete.getId());
-        Item[] expect = {item, null};
+        List<Item> expect = Arrays.asList(item);
         assertThat(tracker.findAll(), is(expect));
     }
 
@@ -67,7 +74,7 @@ public class TrackerTest {
         tracker.add(item);
         Item item2 = new Item("test2", "testDescription2", 1234L);
         tracker.add(item2);
-        Item[] expect = {item, item2};
+        List<Item> expect = Arrays.asList(item, item2);
         assertThat(tracker.findAll(), is(expect));
     }
 
@@ -83,9 +90,8 @@ public class TrackerTest {
         tracker.add(item2);
         Item item3 = new Item("test1", "testDescription3", 12345L);
         tracker.add(item3);
-        Item[] result = tracker.findByName(item.getName());
-        Item[] expect  = {item, item3, null};
-        assertThat(result, is(expect));
+        List<Item> expect = Arrays.asList(item, item3);
+        assertThat(tracker.findByName(item.getName()), is(expect));
     }
 
     /**

@@ -3,6 +3,9 @@ package ru.job4j.tracker;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
+
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -22,7 +25,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
     /**
      * тест редактирования заявки.
@@ -42,10 +45,9 @@ public class StartUITest {
     public void whenDeleteItemThenTrackerDeletes() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item());
-        Item item2 = tracker.add(new Item());
         Input input = new StubInput(new String[]{"3", item.getId(), "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getId(), is(item2.getId()));
+        assertThat(tracker.findAll().size(), is(0));
     }
 
     private final Tracker tracker = new Tracker();
@@ -66,7 +68,7 @@ public class StartUITest {
     public void whenShowAllThenTrackerShowsAllItems() {
         Input input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, this.tracker).init();
-        assertThat(this.tracker.findAll()[0], is(item));
+        assertThat(this.tracker.findAll(), is(Arrays.asList(item)));
     }
     @Test
     public void whenShowByIdThenTrackerShowsItem() {
