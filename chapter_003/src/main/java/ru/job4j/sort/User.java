@@ -22,4 +22,12 @@ public class User implements Comparable<User> {
     public int compareTo(User user) {
        return this.age.compareTo(user.age);
     }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "name='" + name + '\''
+                + ", age=" + age
+                + '}';
+    }
 }
