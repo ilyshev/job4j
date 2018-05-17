@@ -16,10 +16,10 @@ public class ArraySortTest {
     @Test
     public void whenTwoArraysThenThirdSortedArray() {
         ArraySort  testArray = new ArraySort();
-        int [] firstArray = {1, 3, 9, 16};
+        int[] firstArray = {1, 3, 9, 16};
         int[] secondArray = {2, 4, 7};
-        int[] result = testArray.ArraySort(firstArray, secondArray);
-        int [] expected = {1, 2, 3, 4, 7, 9, 16};
+        int[] result = testArray.arraySort(firstArray, secondArray);
+        int[] expected = {1, 2, 3, 4, 7, 9, 16};
         assertThat(result, is(expected));
     }
 }

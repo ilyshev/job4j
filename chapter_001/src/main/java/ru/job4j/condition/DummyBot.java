@@ -13,7 +13,7 @@ public class DummyBot {
      * @param question вопрос.
      * @return rsl ответ.
      */
-    public String answer (String question) {
+    public String answer(String question) {
         String rsl = "Это ставит меня в тупик. Задай другой вопрос.";
         if ("Привет, Бот.".equals(question)) {
             rsl = "Привет, Умник.";

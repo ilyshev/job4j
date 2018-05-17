@@ -13,11 +13,11 @@ public class ArraySort {
      * @param first первый массив
      * @param second второй массив
      */
-    public int[] ArraySort(int[] first, int[] second) {
+    public int[] arraySort(int[] first, int[] second) {
         /**
          * Результирующий массив.
          */
-        int array[] = new int[first.length + second.length];
+        int[] array = new int[first.length + second.length];
         /**
          * Собираем третий массив из двух.
          */
