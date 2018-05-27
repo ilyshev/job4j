@@ -27,7 +27,7 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return this.i == this.matrix.length && this.j == 0 ? false : true;
+        return this.i < this.matrix.length;
     }
 
     @Override
