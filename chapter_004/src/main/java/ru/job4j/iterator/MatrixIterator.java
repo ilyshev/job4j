@@ -18,7 +18,7 @@ public class MatrixIterator implements Iterator {
 
     /**
      * конструктор класса.
-     * @param matrix двумерныймассив
+     * @param matrix двумерный массив
      */
     public MatrixIterator(int[][] matrix) {
         this.matrix = matrix;
@@ -32,17 +32,14 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public Object next() {
-        if (this.i == matrix.length && this.j == 0) {
+        if (!hasNext()) {
             throw new NoSuchElementException("No such element.");
-        } else {
-            int next = this.matrix[i][j];
-            if (this.j == this.matrix[i].length - 1) {
-                this.j = 0;
-                this.i++;
-            } else {
-                this.j++;
-            }
-            return next;
         }
+        int next = this.matrix[i][j++];
+        if (this.matrix[i].length == this.j) {
+            this.j = 0;
+            this.i++;
+        }
+        return next;
     }
 }
